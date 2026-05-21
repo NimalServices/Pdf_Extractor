@@ -316,7 +316,7 @@ HTML = r"""<!DOCTYPE html>
 <div class="wordmark">bank statement extractor</div>
 
 <h1>Turn PDFs into<br><span>clean spreadsheets</span></h1>
-<p class="subtitle">Upload an  business statement — get a structured Excel or CSV file instantly.</p>
+<p class="subtitle">Upload an HSBC business statement — get a structured Excel or CSV file instantly.</p>
 
 <div class="card">
   <div class="drop-zone" id="dropZone">
@@ -402,7 +402,6 @@ function setFile(f) {
 
 function clearResult() {
   msgBox.className = 'msg'; msgBox.textContent = '';
-  stats.classList.remove('visible');
   downloadBtn.classList.remove('visible');
   progressWrap.classList.remove('visible');
   if (downloadUrl) { URL.revokeObjectURL(downloadUrl); downloadUrl = null; }
@@ -527,7 +526,7 @@ def extract():
                 all_rows.extend(clean_transactions(df))
 
         if not all_rows:
-            return jsonify({'error': 'No transaction rows found. Is this an  business statement?'}), 422
+            return jsonify({'error': 'No transaction rows found. Is this an HSBC business statement?'}), 422
 
         result = pd.DataFrame(all_rows, columns=['Date', 'Type', 'Description', 'Paid Out', 'Paid In', 'Balance'])
         result['Date'] = result['Date'].replace('', pd.NA).ffill()
