@@ -321,7 +321,7 @@ HTML = r"""<!DOCTYPE html>
 <div class="wordmark">bank statement extractor</div>
 
 <h1>Turn PDFs into<br><span>clean spreadsheets</span></h1>
-<p class="subtitle">Upload an HSBC business statement — get a structured Excel or CSV file instantly.</p>
+<p class="subtitle">Upload an  business statement — get a structured Excel or CSV file instantly.</p>
 
 <div class="card">
   <div class="drop-zone" id="dropZone">
@@ -361,11 +361,11 @@ HTML = r"""<!DOCTYPE html>
 
   <div class="msg" id="msgBox"></div>
 
-  <div class="stats" id="stats">
-    <div class="stat"><div class="stat-label">Rows</div><div class="stat-val" id="statRows">—</div></div>
-    <div class="stat"><div class="stat-label">Paid Out</div><div class="stat-val" id="statOut">—</div></div>
-    <div class="stat"><div class="stat-label">Paid In</div><div class="stat-val" id="statIn">—</div></div>
-  </div>
+  # <div class="stats" id="stats">
+  #   <div class="stat"><div class="stat-label">Rows</div><div class="stat-val" id="statRows">—</div></div>
+  #   <div class="stat"><div class="stat-label">Paid Out</div><div class="stat-val" id="statOut">—</div></div>
+  #   <div class="stat"><div class="stat-label">Paid In</div><div class="stat-val" id="statIn">—</div></div>
+  # </div>
 
   <a class="btn-download" id="downloadBtn" href="#">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -539,7 +539,7 @@ def extract():
                 all_rows.extend(clean_transactions(df))
 
         if not all_rows:
-            return jsonify({'error': 'No transaction rows found. Is this an HSBC business statement?'}), 422
+            return jsonify({'error': 'No transaction rows found. Is this an  business statement?'}), 422
 
         result = pd.DataFrame(all_rows, columns=['Date', 'Type', 'Description', 'Paid Out', 'Paid In', 'Balance'])
         result['Date'] = result['Date'].replace('', pd.NA).ffill()
