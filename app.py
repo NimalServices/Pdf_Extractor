@@ -286,12 +286,7 @@ HTML = r"""<!DOCTYPE html>
   .msg.error { background: var(--danger-dim); border: 1px solid var(--danger); color: var(--danger); }
   .msg.success { background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent); }
 
-  /* Stats row */
-  .stats { display: none; gap: 1px; margin-top: 1.25rem; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-  .stats.visible { display: flex; }
-  .stat { flex: 1; background: var(--surface2); padding: 12px 14px; }
-  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-family: 'DM Mono', monospace; }
-  .stat-val { font-size: 1.2rem; font-weight: 500; color: var(--text); margin-top: 2px; }
+
 
   /* Download */
   .btn-download {
@@ -361,11 +356,7 @@ HTML = r"""<!DOCTYPE html>
 
   <div class="msg" id="msgBox"></div>
 
-  # <div class="stats" id="stats">
-  #   <div class="stat"><div class="stat-label">Rows</div><div class="stat-val" id="statRows">—</div></div>
-  #   <div class="stat"><div class="stat-label">Paid Out</div><div class="stat-val" id="statOut">—</div></div>
-  #   <div class="stat"><div class="stat-label">Paid In</div><div class="stat-val" id="statIn">—</div></div>
-  # </div>
+
 
   <a class="btn-download" id="downloadBtn" href="#">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -373,7 +364,7 @@ HTML = r"""<!DOCTYPE html>
   </a>
 </div>
 
-<footer>made by Nimal &nbsp;·&nbsp; <a href="tel:+94765809268" style="color:inherit;text-decoration:none;">+94 XX XXX XXXX</a></footer>
+<footer>made by Nimal &nbsp;·&nbsp; <a href="tel:+94XXXXXXXXX" style="color:inherit;text-decoration:none;">+94 XX XXX XXXX</a></footer>
 
 <script>
 let selectedFile = null;
@@ -390,7 +381,7 @@ const extractBtn = document.getElementById('extractBtn');
 const progressWrap = document.getElementById('progressWrap');
 const progressLabel = document.getElementById('progressLabel');
 const msgBox     = document.getElementById('msgBox');
-const stats      = document.getElementById('stats');
+
 const downloadBtn = document.getElementById('downloadBtn');
 const downloadLabel = document.getElementById('downloadLabel');
 
@@ -489,10 +480,7 @@ extractBtn.addEventListener('click', async () => {
       downloadLabel.textContent = selectedFmt.toUpperCase();
       downloadBtn.classList.add('visible');
 
-      document.getElementById('statRows').textContent = meta.rows ?? '—';
-      document.getElementById('statOut').textContent  = meta.paid_out ? '£' + meta.paid_out : '—';
-      document.getElementById('statIn').textContent   = meta.paid_in  ? '£' + meta.paid_in  : '—';
-      stats.classList.add('visible');
+
 
       msgBox.textContent = '✓ Extracted ' + (meta.rows ?? '?') + ' transaction rows successfully.';
       msgBox.className = 'msg success visible';
